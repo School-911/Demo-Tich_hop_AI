@@ -1,1 +1,0 @@
-# Demo-Tich_hop_AI
