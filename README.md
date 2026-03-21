@@ -1,8 +1,3 @@
-Rất xin lỗi bạn, có thể do lỗi hiển thị nên đoạn mã Markdown bị ẩn. Tôi sẽ gửi lại ngay dưới đây ở dạng văn bản thuần túy để bạn chắc chắn sao chép được nhé.
-
-Đây là nội dung đầy đủ cho file **README.md** của bạn:
-
----
 
 # 🏰 Hệ Thống Quản Lý Tài Chính Thông Minh - Hầu Gái AI Executive
 
