@@ -86,3 +86,35 @@ VITE_OPENAI_API_KEY=
 3. **Chạy ứng dụng:** `npm run dev`
 
 ---
+
+---
+
+## 💻 Hướng Dẫn cài cơ sở dữ liệu supabase
+
+1. **Tạo 1 project trên supabase** 
+2. **Vào SQL Editor và chạy lệnh sau:** `create table public.portfolios (
+  id uuid not null default gen_random_uuid() primary key,
+  user_id uuid not null references auth.users(id) on delete cascade,
+  ticker text not null,
+  company_name text,
+  shares numeric not null default 0,
+  average_buy_price numeric not null default 0,
+  created_at timestamp with time zone not null default now()
+);
+-- 1. Kích hoạt Bảo vệ cấp Dữ liệu (Row Level Security - RLS)
+alter table public.portfolios enable row level security;
+-- 2. Chỉ cho người dùng Xem danh mục cổ phiếu của ĐÚNG TÀI KHOẢN ĐÓ
+create policy "Users can view own portfolio"
+on public.portfolios for select to authenticated 
+using ( auth.uid() = user_id );
+-- 3. Chỉ cho người dùng Thêm mã chứng khoán MỚI vào tài khoản của mình
+create policy "Users can insert own portfolio"
+on public.portfolios for insert to authenticated 
+with check ( auth.uid() = user_id );
+-- 4. Chỉ cho người dùng Xóa cổ phiếu TỒN TẠI trong tài khoản của họ
+create policy "Users can delete own portfolio"
+on public.portfolios for delete to authenticated 
+using ( auth.uid() = user_id );`
+3. **Chạy code trên:** ` run `
+
+---
